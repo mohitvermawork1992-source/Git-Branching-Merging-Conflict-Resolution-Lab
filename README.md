@@ -81,7 +81,7 @@ git-branching-lab/
  ├── README.md
  └── screenshots/
       ├── git-graph.png
-      ├── conflict.png
+      ├── conflict.png --(erro-config-snap)
       └── merge-result.png
 ```
 
