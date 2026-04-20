@@ -27,17 +27,17 @@ This repository demonstrates hands-on practice of core Git concepts including br
 
 ### 2️⃣ Branch Creation
 
-* Created a new branch (`feature`) from `master`
+* Created a new branch (`feature`) from `main`
 * Switched to the feature branch
 
 ### 3️⃣ Parallel Changes
 
 * Added changes in `feature` branch
-* Switched back to `master` and made different changes
+* Switched back to `main` and made different changes
 
 ### 4️⃣ Merge Operation
 
-* Merged `feature` branch into `master`
+* Merged `feature` branch into `main`
 * Encountered a merge conflict due to changes in the same file
 
 ### 5️⃣ Conflict Resolution
@@ -78,33 +78,110 @@ The commit graph clearly demonstrates:
 ```
 git-branching-lab/
  ├── file.txt
- └── README.md
+ ├── README.md
+ └── screenshots/
+      ├── git-graph.png
+      ├── conflict.png
+      └── merge-result.png
 ```
 
 ---
 
 ## 🚀 How to Run This Lab
 
+Follow the steps below to reproduce the branching, merging, and conflict resolution workflow.
+
+---
+
+### 🔹 Step 1: Initialize Repository
+
 ```bash
 git init
 echo "hello" > file.txt
 git add .
-git commit -m "Initial commit"
+git commit -m "first"
+```
 
+👉 This creates the base project.
+
+---
+
+### 🔹 Step 2: Create Feature Branch
+
+```bash
 git checkout -b feature
 echo "feature change" >> file.txt
 git add .
-git commit -m "Feature update"
+git commit -m "Feature work"
+```
 
+👉 Work is done in the `feature` branch.
+
+---
+
+### 🔹 Step 3: Switch to Main Branch
+
+```bash
 git checkout master
 echo "main change" >> file.txt
 git add .
-git commit -m "Main update"
+git commit -m "Main edit"
+```
 
+👉 Now a different change is made in the main branch.
+
+---
+
+### ⚠️ Why Conflict Occurs
+
+👉 Both `feature` and `master` branches modified the **same file (`file.txt`)** after branching.
+👉 When Git tries to merge, it cannot automatically decide which change to keep.
+
+---
+
+### 🔹 Step 4: Merge Branches
+
+```bash
 git merge feature
 ```
 
+👉 This will trigger a **merge conflict**.
+
 ---
+
+### 🔹 Step 5: Resolve Conflict
+
+Open `file.txt` and you will see:
+
+```text
+<<<<<<< HEAD
+main change
+=======
+feature change
+>>>>>>> feature
+```
+
+👉 Manually resolve it by keeping the desired content:
+
+```text
+hello
+main edit
+feature edit
+```
+
+---
+
+### 🔹 Step 6: Finalize Merge
+
+```bash
+git add .
+git commit -m "Resolved merge conflict"
+```
+
+👉 This completes the merge process.
+
+---
+
 
 ## 🔥 Outcome
 
